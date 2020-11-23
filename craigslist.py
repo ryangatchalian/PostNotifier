@@ -45,39 +45,40 @@ def output_results(all_posts: list):
     print(post_data)
 
 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_colwidth', None)
-pd.set_option('display.width', None)
+def cl_scrape():
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.max_colwidth', None)
+    pd.set_option('display.width', None)
 
-options = Options()
-options.headless = True
-options.add_argument("--window-size=1920,1080")
+    options = Options()
+    options.headless = True
+    options.add_argument("--window-size=1920,1080")
 
-# takes an instance of the chromedriver through 'options', and uses driver path to navigate
-# to the chromedriver location
-driver = webdriver.Chrome(options=options, executable_path=settings.DRIVER_PATH)
-driver.get(settings.LINK)
-# using BS, we obtain the page's html as a string.
-soup = BeautifulSoup(driver.page_source, 'html.parser')
+    # takes an instance of the chromedriver through 'options', and uses driver path to navigate
+    # to the chromedriver location
+    driver = webdriver.Chrome(options=options, executable_path=settings.DRIVER_PATH)
+    driver.get(settings.LINK)
+    # using BS, we obtain the page's html as a string.
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-totalPosts = soup.find('span', class_='totalcount').text
-nextButton = soup.find('a', class_='button next')
-all_titles = []
+    # total_posts = soup.find('span', class_='totalcount').text
+    next_button = soup.find('a', class_='button next')
+    all_titles = []
 
-# Add the current page's post titles to the list
-get_posts(soup, all_titles, search=settings.CRAIGSLIST_KEYWORD)
+    # Add the current page's post titles to the list
+    get_posts(soup, all_titles, search=settings.CRAIGSLIST_KEYWORD)
 
-# go through each page, and add the post titles to the list
-while True:
-    if nextButton.get('href'):
-        latest_soup = next_page(driver, nextButton.get('href'))
-        nextButton = latest_soup.find('a', class_='button next')
-        get_posts(latest_soup, all_titles, search=settings.CRAIGSLIST_KEYWORD)
-    else:
-        break
+    # go through each page, and add the post titles to the list
+    while True:
+        if next_button.get('href'):
+            latest_soup = next_page(driver, next_button.get('href'))
+            next_button = latest_soup.find('a', class_='button next')
+            get_posts(latest_soup, all_titles, search=settings.CRAIGSLIST_KEYWORD)
+        else:
+            break
 
-output_results(all_titles)
+    output_results(all_titles)
 
-print("{} results containing {}".format(len(all_titles), settings.CRAIGSLIST_KEYWORD))
+    print("{} results containing {}".format(len(all_titles), settings.CRAIGSLIST_KEYWORD))
 
-driver.quit()
+    driver.quit()
