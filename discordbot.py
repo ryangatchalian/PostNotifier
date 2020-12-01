@@ -1,81 +1,108 @@
-import random
 import settings
 import post
 import discord
+import asyncio
 import reddit
-from discord.ext import commands
+from discord.ext import commands, tasks
 import mysql.connector
 from mysql.connector import Error
 
+channel_name = ''
+channel_id = ''
+is_running = False
+search = settings.SUBREDDIT
+KEYWORD = settings.REDDIT_KEYWORD
 
-def scrape_sites(website: str, site=settings.REDDIT):
+def scrape_sites(subname=search):
+    data_list = reddit.reddit_scrape(subname, KEYWORD)
+    print(data_list)
     # Connect to server, and create database connection. Create tables and databases if not exist.
     serverconn = post.create_server_connection('localhost', 'root', settings.MYSQL_PASS)
     post.create_database(serverconn, settings.DB_NAME)
     db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
-    create_table_query = 'CREATE TABLE IF NOT EXISTS ' + site + settings.TABLE_SETTINGS
+    create_table_query = 'CREATE TABLE IF NOT EXISTS ' + subname + settings.TABLE_SETTINGS
     post.execute_query(db, create_table_query)
-
-    # Run scrape and store in database. Store
-    data_list = reddit.reddit_scrape()
-    output_list = []
+    get_row_count = "SELECT COUNT(*) FROM " + subname + " ORDER BY _id DESC LIMIT 1;"
+    try:
+        first_count = post.pull_data(db, get_row_count)[0][0]
+    except:
+        first_count = 0
+    # Run scrape and store in database.
     if len(data_list) > 1:
         for data in data_list:
             # Since store_post checks if duplicate in database, only append output if not duplicate.
-            task = post.store_post(db, site, data)
-            if task:
-                output_list.append(data)
-            else:
-                pass
+            task = post.store_post(db, subname, data)
+    elif len(data_list) == 0:
+        pass
     else:
-        task = post.store_post(db, site, data_list[0])
-        if task:
-            output_list.append(data_list[0])
-        else:
-            pass
-    return output_list
-    # print(post.pull_data(db, 'SELECT * FROM ' + site + ' WHERE _id>' + str(last_id)))
+        task = post.store_post(db, subname, data_list[0])
+    latest_count = post.pull_data(db, get_row_count)[0][0]
+    db.close()
+    return first_count, latest_count
 
-
-def test_function(hi: str):
-    output = 'Hello, did you say {}?'.format(hi)
-    return output
 
 TOKEN = 'Nzc1NjUwMDU4NTM5NjMwNjMy.X6paaA.pbALCiGjFi2TZN0Qn54uyJeCd9U'
 
 client = discord.Client()
 
+@client.event
+async def on_ready():
+    print("Bot is ready.")
 
 @client.event
 async def on_message(message):
+    global channel_name, channel_id, is_running, KEYWORD, search
     if message.author == client.user:
         return
 
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
+    if 'run here' == message.content:
+        channel_name = message.channel
+        channel_id = message.channel.id
+        print(channel_name)
+        await message.channel.send("Posts will be added to this channel. Thanks!")
 
-    if message.content == '99!':
-        response = random.choice(brooklyn_99_quotes)
-        await message.channel.send(response)
+    if message.content == 'stop scrape':
+        is_running = False
+        await message.channel.send("Scraping stopped.")
 
-    if message.content == 'hello?':
-        # response = test_function('hello?')
-        taskscrape_sites('reddit', settings.REDDIT)
-        if
-        await message.channel.send(response)
+    if message.content == 'start scrape':
+        is_running = True
+        await message.channel.send("Starting scrape!")
+        await start_scrape(message.channel)
 
-async def scraping():
-    await client.wait_until_ready()
-    task = scrape_sites('reddit', settings.REDDIT)
-    if 0 < len(task) < 2:
-        message
+    if "key" in message.content:
+        msg = message.content
+        if is_running:
+            await message.channel.send("Please stop the scrape first!")
+        else:
+            KEYWORD = msg.replace('key ', '')
+            print(KEYWORD)
+            await message.channel.send("Keyword updated. Run the script when ready!")
 
+    if "-subreddit" in message.content:
+        msg = message.content
+        if is_running:
+            await message.channel.send("Please stop the scrape first!")
+        else:
+            search = msg.replace('-subreddit ', '')
+            await message.channel.send("Subreddit updated. Run the script when ready!")
+
+async def start_scrape(channel):
+    global is_running, search
+    while is_running:
+        ids = scrape_sites(search)
+        db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
+        start, stop = ids
+        print(start, stop)
+        if stop - start < 1:
+            pass
+        else:
+            output = post.latest_posts(db, search, start, stop)
+            print(output)
+            for row in output:
+                await channel.send(f'{row[1]} \n {row[2]} \n {row[3]}\n')
+        db.close()
+        await asyncio.sleep(300)
 
 
 client.run(TOKEN)

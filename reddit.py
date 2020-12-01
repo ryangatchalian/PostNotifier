@@ -9,7 +9,7 @@ def get_date(date: float):
     return dt.datetime.fromtimestamp(date)
 
 
-def reddit_scrape():
+def reddit_scrape(sub, key):
     # connection to reddit
     reddit = praw.Reddit(client_id=settings.ID_NUMBER,
                          client_secret=settings.SECRET_NUMBER,
@@ -18,10 +18,10 @@ def reddit_scrape():
                          password=settings.PASS)
 
     # specify targetted subreddit
-    subreddit = reddit.subreddit(settings.SUBREDDIT)
+    subreddit = reddit.subreddit(sub)
 
     # search subreddit for post by keyword, in the past hour
-    new_subreddit = subreddit.search(settings.REDDIT_KEYWORD, time_filter='day')
+    new_subreddit = subreddit.search(key, sort='new', time_filter='day')
 
     post_dict = {'title': [],
                  'url': [],
@@ -40,12 +40,3 @@ def reddit_scrape():
         output_list.append((row[1], row[2], row[3]))
 
     return output_list
-
-
-# pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_colwidth', None)
-# pd.set_option('display.width', None)
-# print(post_data)
-
-# for row in post_data.itertuples():
-#     print(row[1], row[2], row[3])
