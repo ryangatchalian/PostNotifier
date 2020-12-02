@@ -3,6 +3,7 @@ import post
 import discord
 import asyncio
 import reddit
+import os
 
 
 channel_name = ''
@@ -106,4 +107,4 @@ async def start_scrape(channel):
         db.close()
         await asyncio.sleep(300)
 
-client.run(TOKEN)
+client.run(str(os.environ.get(TOKEN)))
