@@ -42,7 +42,7 @@ def scrape_sites(subname=search):
     return first_count, latest_count
 
 client = commands.Bot(command_prefix=".")
-token = "DISCORD_BOT_TOKEN"
+token = os.getenv("DISCORD_BOT_TOKEN")
 
 @client.event
 async def on_ready():
