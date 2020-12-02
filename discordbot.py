@@ -10,14 +10,16 @@ channel_id = ''
 is_running = False
 search = settings.SUBREDDIT
 KEYWORD = settings.REDDIT_KEYWORD
-
+mysql://b8b2fcd9b2a95d:dfdbcc4a@us-cdbr-east-02.cleardb.com/heroku_3f0223b7f1eb928?reconnect=true
 def scrape_sites(subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
     # Connect to server, and create database connection. Create tables and databases if not exist.
-    serverconn = post.create_server_connection('localhost', 'root', settings.MYSQL_PASS)
-    post.create_database(serverconn, settings.DB_NAME)
-    db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
+    # serverconn = post.create_server_connection('localhost', 'root', settings.MYSQL_PASS)
+    # post.create_database(serverconn, settings.DB_NAME)
+    # USING HEROKU
+    # db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
+    db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
     create_table_query = 'CREATE TABLE IF NOT EXISTS ' + subname + settings.TABLE_SETTINGS
     post.execute_query(db, create_table_query)
     get_row_count = "SELECT COUNT(*) FROM " + subname + " ORDER BY _id DESC LIMIT 1;"
@@ -89,7 +91,9 @@ async def start_scrape(channel):
     global is_running, search
     while is_running:
         ids = scrape_sites(search)
-        db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
+        # db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
+        # USING HEROKU
+        db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
         start, stop = ids
         print(start, stop)
         if stop - start < 1:
@@ -101,6 +105,5 @@ async def start_scrape(channel):
                 await channel.send(f'{row[1]} \n {row[2]} \n {row[3]}\n')
         db.close()
         await asyncio.sleep(300)
-
 
 client.run(TOKEN)
