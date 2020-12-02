@@ -1,7 +1,6 @@
 import settings
 import post
 import discord
-import asyncio
 import reddit
 import os
 
@@ -105,6 +104,5 @@ async def start_scrape(channel):
             for row in output:
                 await channel.send(f'{row[1]} \n {row[2]} \n {row[3]}\n')
         db.close()
-        await asyncio.sleep(300)
 
 client.run(TOKEN)
