@@ -74,7 +74,7 @@ async def stop(ctx):
     await ctx.send("Scraping stopped.")
 
 @client.command()
-async def key(ctx, newkey):
+async def newkey(ctx, newkey):
     global is_running, KEYWORD
     if is_running:
         await ctx.send("Please stop the scrape first!")
