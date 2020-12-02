@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f19e61c-e481-495e-94f9-e9dd5c4a4a95" name="Default Changelist" comment="" />
+    <list default="true" id="2f19e61c-e481-495e-94f9-e9dd5c4a4a95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PostNotifier.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PostNotifier.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craigslist.py" beforeDir="false" afterPath="$PROJECT_DIR$/craigslist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discordbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discordbot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reddit.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,16 +54,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.8 (Python3.8)" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../trippy-api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../adventofcode" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\PostNotifier" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\PostNotifier" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.reddit">
+  <component name="RunManager" selected="Python.discordbot">
     <configuration name="craigslist" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PostNotifier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,9 +154,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.reddit" />
         <item itemvalue="Python.discordbot" />
         <item itemvalue="Python.post" />
+        <item itemvalue="Python.reddit" />
         <item itemvalue="Python.craigslist" />
       </list>
     </recent_temporary>
@@ -138,27 +172,59 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .gitignore" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1605290798206">
+    <state x="724" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606773797706">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605290798206" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1605225435847">
+    <state x="724" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606773797706" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606864462757">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605225435847" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1605225435847">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606864462757" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1606816822607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605225435847" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1605225435847">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606782264585" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606816822607" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1606816822607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605225435847" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1605225435847">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606782264585" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606816822607" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1606816822607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605225435847" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606782264585" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606816822607" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1606816822607">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606782264585" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606816822607" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606785045185">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606785045185" />
+    <state x="-1423" y="70" width="1369" height="1027" key="dock-window-1" timestamp="1606778257697">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1423" y="70" width="1369" height="1027" key="dock-window-1/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606778257697" />
     <state x="597" y="181" key="new project wizard" timestamp="1605290787035">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

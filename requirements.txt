@@ -1,0 +1,16 @@
+discord==1.0.1
+discord.py==1.5.1
+idna==2.10
+multidict==4.7.6
+mysql-connector-python==8.0.22
+pandas==1.1.4
+praw==7.1.0
+prawcore==1.5.0
+python-dateutil==2.8.1
+pytz==2020.1
+requests==2.24.0
+six==1.15.0
+update-checker==0.18.0
+urllib3==1.25.11
+websocket-client==0.57.0
+yarl==1.5.1
