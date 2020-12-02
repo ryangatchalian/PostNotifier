@@ -10,7 +10,7 @@ channel_id = ''
 is_running = False
 search = settings.SUBREDDIT
 KEYWORD = settings.REDDIT_KEYWORD
-mysql://b8b2fcd9b2a95d:dfdbcc4a@us-cdbr-east-02.cleardb.com/heroku_3f0223b7f1eb928?reconnect=true
+
 def scrape_sites(subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
