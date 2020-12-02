@@ -107,4 +107,4 @@ async def start_scrape(channel):
         db.close()
         await asyncio.sleep(300)
 
-client.run(str(os.environ.get(TOKEN)))
+client.run(TOKEN)
