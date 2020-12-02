@@ -14,3 +14,4 @@ update-checker==0.18.0
 urllib3==1.25.11
 websocket-client==0.57.0
 yarl==1.5.1
+python-certifi-win32
