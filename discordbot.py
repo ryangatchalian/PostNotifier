@@ -1,11 +1,6 @@
-import settings
-import post
 import discord
 import asyncio
-import reddit
-from discord.ext import commands, tasks
-import mysql.connector
-from mysql.connector import Error
+from . import settings, reddit, post
 
 channel_name = ''
 channel_id = ''

@@ -1,9 +1,7 @@
 import praw
-import settings
 import datetime as dt
 import pandas as pd
-import mysql.connector
-
+from . import settings
 
 def get_date(date: float):
     return dt.datetime.fromtimestamp(date)
