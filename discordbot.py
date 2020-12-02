@@ -74,21 +74,21 @@ async def stop(ctx):
     await ctx.send("Scraping stopped.")
 
 @client.command()
-async def newkey(ctx, newkey):
+async def newkey(ctx, keyval):
     global is_running, KEYWORD
     if is_running:
         await ctx.send("Please stop the scrape first!")
     else:
-        KEYWORD = newkey
+        KEYWORD = keyval
         await ctx.send("Keyword updated. Run the script when ready!")
 
 @client.command()
-async def key(ctx, newkey):
+async def newsub(ctx, keyval):
     global is_running, search
     if is_running:
         await ctx.send("Please stop the scrape first!")
     else:
-        search = newkey
+        search = keyval
         await ctx.send("Keyword updated. Run the script when ready!")
 
 
