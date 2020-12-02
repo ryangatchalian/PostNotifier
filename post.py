@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
-from . import settings, reddit
+import settings
+import reddit
 
 
 def create_server_connection(host_name: str, user_name: str, user_password: str):
