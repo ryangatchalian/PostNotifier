@@ -3,7 +3,7 @@ import post
 import discord
 import asyncio
 import reddit
-import os
+import certifi
 
 
 channel_name = ''
