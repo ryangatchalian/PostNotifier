@@ -6,8 +6,6 @@ from discord.ext import commands
 import os
 
 
-channel_name = ''
-channel_id = ''
 is_running = False
 search = settings.SUBREDDIT
 KEYWORD = settings.REDDIT_KEYWORD
@@ -15,10 +13,6 @@ KEYWORD = settings.REDDIT_KEYWORD
 def scrape_sites(subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
-    # Connect to server, and create database connection. Create tables and databases if not exist.
-    # serverconn = post.create_server_connection('localhost', 'root', settings.MYSQL_PASS)
-    # post.create_database(serverconn, settings.DB_NAME)
-    # USING HEROKU
     # db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
     db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
     create_table_query = 'CREATE TABLE IF NOT EXISTS ' + subname + settings.TABLE_SETTINGS
