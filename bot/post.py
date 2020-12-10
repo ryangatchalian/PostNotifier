@@ -1,8 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
-import settings
-import reddit
-
+from reddit import *
+from settings import *
 
 def create_server_connection(host_name: str, user_name: str, user_password: str):
     connection = None

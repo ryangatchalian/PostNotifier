@@ -1,8 +1,7 @@
 import praw
-import settings
+from settings import *
 import datetime as dt
 import pandas as pd
-import mysql.connector
 
 
 def get_date(date: float):
@@ -11,11 +10,11 @@ def get_date(date: float):
 
 def reddit_scrape(sub, key):
     # connection to reddit
-    reddit = praw.Reddit(client_id=settings.ID_NUMBER,
-                         client_secret=settings.SECRET_NUMBER,
-                         user_agent=settings.APP_NAME,
-                         username=settings.USER,
-                         password=settings.PASS)
+    reddit = praw.Reddit(client_id=ID_NUMBER,
+                         client_secret=SECRET_NUMBER,
+                         user_agent=APP_NAME,
+                         username=USER,
+                         password=PASS)
 
     # specify targetted subreddit
     subreddit = reddit.subreddit(sub)

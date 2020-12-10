@@ -1,10 +1,9 @@
-import settings
-import post
 import discord
+import settings
 import reddit
-from discord.ext import commands
+import post
 import os
-
+from discord.ext import commands
 
 is_running = False
 search = settings.SUBREDDIT
@@ -13,7 +12,6 @@ KEYWORD = settings.REDDIT_KEYWORD
 def scrape_sites(subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
-    # db = post.create_db_connection('localhost', 'root', settings.MYSQL_PASS, settings.DB_NAME)
     db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
     create_table_query = 'CREATE TABLE IF NOT EXISTS ' + subname + settings.TABLE_SETTINGS
     post.execute_query(db, create_table_query)

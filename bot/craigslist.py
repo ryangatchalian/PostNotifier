@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from datetime import *
 import pandas as pd
-import settings
+from bot import settings
 
 
 def next_page(wbdriver: webdriver, url: str):
