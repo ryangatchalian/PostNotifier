@@ -34,7 +34,7 @@ def scrape_sites(db, subname=search):
     return first_count, latest_count
 
 client = commands.Bot(command_prefix=".")
-token = "Nzc1NjUwMDU4NTM5NjMwNjMy.X6paaA.pbALCiGjFi2TZN0Qn54uyJeCd9U"
+token = settings.TOKEN
 
 @client.event
 async def on_ready():
