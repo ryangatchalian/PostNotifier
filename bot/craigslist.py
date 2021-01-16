@@ -1,4 +1,5 @@
-# General Note: Web scraping is good, because you don't have to rely on any API.
+# For future integration with Craigslist
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup

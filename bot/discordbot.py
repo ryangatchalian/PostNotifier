@@ -9,10 +9,11 @@ is_running = False
 search = settings.SUBREDDIT
 KEYWORD = settings.REDDIT_KEYWORD
 
-def scrape_sites(subname=search):
+datab = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
+
+def scrape_sites(db, subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
-    db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
     create_table_query = 'CREATE TABLE IF NOT EXISTS ' + subname + settings.TABLE_SETTINGS
     post.execute_query(db, create_table_query)
     get_row_count = "SELECT COUNT(*) FROM " + subname + " ORDER BY _id DESC LIMIT 1;"
@@ -30,7 +31,6 @@ def scrape_sites(subname=search):
     else:
         task = post.store_post(db, subname, data_list[0])
     latest_count = post.pull_data(db, get_row_count)[0][0]
-    db.close()
     return first_count, latest_count
 
 client = commands.Bot(command_prefix=".")
@@ -43,27 +43,28 @@ async def on_ready():
 
 @client.command()
 async def scrape(ctx):
-    global is_running, search
+    global is_running, search, datab
     is_running = True
     while is_running:
-        ids = scrape_sites(search)
-        db = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
+        ids = scrape_sites(datab, search)
         start, stop = ids
         print(start, stop)
         if stop - start < 1:
             pass
         else:
-            output = post.latest_posts(db, search, start, stop)
+            output = post.latest_posts(datab, search, start, stop)
             print(output)
             for row in output:
                 await ctx.send(f'{row[1]} \n {row[2]} \n {row[3]}\n')
-        db.close()
 
 @client.command()
 async def stop(ctx):
     global is_running
     is_running = False
+    print("made it")
+    datab.close()
     await ctx.send("Scraping stopped.")
+
 
 @client.command()
 async def newkey(ctx, keyval):
