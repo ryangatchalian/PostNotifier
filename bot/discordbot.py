@@ -11,6 +11,7 @@ KEYWORD = settings.REDDIT_KEYWORD
 
 datab = post.create_db_connection('us-cdbr-east-02.cleardb.com', 'b8b2fcd9b2a95d', 'dfdbcc4a', 'heroku_3f0223b7f1eb928')
 
+
 def scrape_sites(db, subname=search):
     data_list = reddit.reddit_scrape(subname, KEYWORD)
     print(data_list)
